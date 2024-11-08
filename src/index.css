@@ -1,16 +1,17 @@
 :root {
-  --main-margin: 20px;
+    --main-margin: 20px;
+    --ico-checkbox-size: 27px;
 }
 
 body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Monospace', monospace, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+    margin: 0;
+    font-family: -apple-system, BlinkMacSystemFont, monospace, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
 }
 
 code {
-  font-family: source-code-pro, 'Monospace', sans-serif, monospace;
+    font-family: source-code-pro, 'Monospace', sans-serif, monospace;
 }
 
 .header {
@@ -33,6 +34,61 @@ code {
     color: #61dafb;
     margin-bottom: var(--main-margin);
 }
+
+
+.checkbox {
+    width: fit-content;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.checkbox__label {
+    padding-left: 5px;
+}
+
+.checkbox__input {
+    appearance: none;
+    position: relative;
+    width: 30px;
+    height: 30px;
+    background: transparent;
+    box-shadow: inset 0 0 5px rgb(0 0 0 / 0.2);
+    border-radius: 10px;
+    border: 1px solid #FFFFFF;
+    transition: 500ms;
+}
+
+.checkbox__input::after {
+    content: "";
+    position: absolute;
+    width: 0px;
+    height: 0px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(0);
+    font-size: 30px;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 256 256'%3E%3Crect width='256' height='256' fill='none'/%3E%3Cpolyline points='216 72.005 104 184 48 128.005' fill='none' stroke='currentColor' stroke-linecap='round' stroke-linejoin='round' stroke-width='16'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    transition: transform 0.3s ease;
+}
+
+.checkbox__input:checked::after {
+    width: var(--ico-checkbox-size);
+    height: var(--ico-checkbox-size);
+    transform: translate(-50%, -50%) scale(1);
+}
+
+.checkbox__input:disabled {
+    background: #ccc;
+    border-color: #ccc;
+}
+
+.checkbox__input:disabled::after {
+    filter: grayscale(100%);
+}
+
 
 .main {
     text-align: left;
